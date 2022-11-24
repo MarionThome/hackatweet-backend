@@ -9,6 +9,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tweetRouter = require('./routes/tweets');
 
+const cors = require('cors');
+app.use(cors());
+
 
 var app = express();
 
