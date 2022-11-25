@@ -16,12 +16,14 @@ router.get('/', (req, res) => {
 
 router.post('/newtweet', (req,res) => {
 
+    const hashtags = req.body.tweet.match(/#(\w*[0-9a-zA-Z]+\w*[0-9a-zA-Z])/g)
+
     const newTweet = new Tweet({
         name : req.body.name, 
         username : req.body.username, 
         tweet : req.body.tweet, 
         date : new Date(),
-        hashtag : req.body.hashtag,
+        hashtag : hashtags.map(e => e.toLowerCase()),
         likes : 0, 
         })
 
@@ -31,8 +33,9 @@ router.post('/newtweet', (req,res) => {
     })
 })
 
-router.get('/trend/:hashtag', (req, res) => {
-    Tweet.find({hashtag : req.body.hashtag}).then(data => {
+router.get('/trends/:hashtag', (req, res) => {
+
+    Tweet.find({hashtag : req.params.hashtag.toLocaleLowerCase()}).then(data => {
         if(data){
             res.json({result : true, data : data})
         }
