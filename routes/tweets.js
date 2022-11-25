@@ -38,7 +38,7 @@ router.post("/newtweet", (req, res) => {
   });
 });
 
-router.get("/trends/:hashtag", (req, res) => {
+router.get("/:hashtag", (req, res) => {
   Tweet.find({ hashtag: req.params.hashtag.toLocaleLowerCase() }).then(
     (data) => {
       if (data) {
