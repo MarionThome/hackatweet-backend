@@ -22,6 +22,7 @@ router.post('/newtweet', (req,res) => {
         tweet : req.body.tweet, 
         date : new Date(),
         hashtag : req.body.hashtag,
+        likes : 0, 
         })
 
         console.log(newTweet)
@@ -30,7 +31,7 @@ router.post('/newtweet', (req,res) => {
     })
 })
 
-router.get('/:hashtag', (req, res) => {
+router.get('/trend/:hashtag', (req, res) => {
     Tweet.find({hashtag : req.body.hashtag}).then(data => {
         if(data){
             res.json({result : true, data : data})

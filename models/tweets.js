@@ -6,7 +6,8 @@ const tweetSchema = mongoose.Schema({
    username : String, 
    tweet : String, 
    date : Date,
-   hashtag : String
+   hashtag : String, 
+   likes : Number
 });
    
 
